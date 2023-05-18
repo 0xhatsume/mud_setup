@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mud:
+    build:
+      dockerfile: ./app/Docker/Dockerfile
+    platform: linux/amd64
+    image: foundry180523-node18.9.1-mud
+    container_name: mud
+    # build:
+    #   context: .
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+      - 8888:8888
+      - 8545:8545
+    volumes:
+      - ./srv:/srv
+    command: ["sh"]
+    working_dir: /srv
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
